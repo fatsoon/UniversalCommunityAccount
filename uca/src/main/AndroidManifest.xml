@@ -1,0 +1,31 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.fatsoon.uca">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 用于调用 JNI -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name">
+        <activity
+            android:name="com.fatsoon.uca.activity.LoginQqActivity"
+            android:label="@string/app_name"/>
+
+        <activity
+            android:name="com.fatsoon.uca.activity.LoginSinaWeiboActivity"
+            android:label="@string/app_name"/>
+        <!--weibo必须 -->
+        <activity
+            android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
+            android:configChanges="keyboardHidden|orientation"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"/>
+
+
+    </application>
+
+</manifest>
