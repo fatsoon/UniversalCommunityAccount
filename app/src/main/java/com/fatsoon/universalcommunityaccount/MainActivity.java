@@ -10,8 +10,10 @@ import android.widget.Toast;
 
 import com.fatsoon.uca.activity.LoginQqActivity;
 import com.fatsoon.uca.activity.LoginSinaWeiboActivity;
+import com.fatsoon.uca.callbacks.SinaLoginCallBack;
 import com.fatsoon.uca.utils.ActivityUtils;
 import com.fatsoon.uca.utils.PreferenceManager;
+import com.fatsoon.uca.utils.UCASinaWeiboUtils;
 import com.sina.weibo.sdk.auth.AuthInfo;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WeiboAuthListener;
@@ -47,6 +49,17 @@ public class MainActivity extends ActionBarActivity {
         }
         if (id == R.id.action_loginweibo) {
             startActivity(new Intent(MainActivity.this, LoginSinaWeiboActivity.class));
+            LoginSinaWeiboActivity.setCallBack(new SinaLoginCallBack() {
+                @Override
+                public void onSuccess() {
+
+                }
+
+                @Override
+                public void onFaild(int i, String s) {
+
+                }
+            });
             return true;
         }
 

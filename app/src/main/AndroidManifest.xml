@@ -20,18 +20,8 @@
         <!--微博必须-->
         <meta-data android:name="uca_weibo_key" android:value="weibo1158881934"/>
         <meta-data android:name="uca_weibo_redirect_url" android:value="http://dreampy.sinaapp.com"/>
-        <!--qq互连必须 -->
-        <activity
-            android:name="com.tencent.tauth.AuthActivity"
-            android:launchMode="singleTask"
-            android:noHistory="true">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="tencent100415388" />
-            </intent-filter>
-        </activity>
+        <!--qq-->
+        <meta-data android:name="uca_qq_appid" android:value="tencent100505470"/>
     </application>
 
 </manifest>

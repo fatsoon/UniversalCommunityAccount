@@ -4,6 +4,8 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -19,13 +21,14 @@ import com.fatsoon.uca.utils.UCAQqUtils;
 public class LoginQqActivity extends Activity {
 
 	private Tencent mTencent;
-	public static final String APP_ID = "100505470";
+	public static String APP_ID = "";
 	public static final String SCOPE = "get_simple_userinfo";
 	public static QqLoginCallBack callBack;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		readAppInfo();
 		mTencent = Tencent.createInstance(APP_ID, getApplicationContext());
 		String access_token = PreferenceManager.getString(this,
 				PreferenceManager.KEY_LOGIN_QQ_ACCESS_TOKEN, "");
@@ -36,6 +39,21 @@ public class LoginQqActivity extends Activity {
 		mTencent.setAccessToken(access_token, expires_in);
 		mTencent.setOpenId(openid);
 		qqLogin(null);
+	}
+
+	private void readAppInfo() {
+		try {
+			ApplicationInfo appInfo = this.getPackageManager()
+					.getApplicationInfo(getPackageName(),
+							PackageManager.GET_META_DATA);
+			String qqAppId = appInfo.metaData.getString("uca_qq_appid");
+			if(qqAppId == null){
+				throw new RuntimeException("Manifest文件中找不到key为uca_qq_appid的metadata");
+			}
+			APP_ID = qqAppId.substring(7);
+		} catch (PackageManager.NameNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void qqLogin(View v) {
