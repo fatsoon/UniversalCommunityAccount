@@ -8,7 +8,7 @@ UCA是Android上的一个第三方账号登录库，目的是简化第三方SDK�
 
 ```gradle
 dependencies {
-    compile 'com.fatsoon:uca:0.1.5'
+    compile 'com.fatsoon:uca:0.1.7'
 }
 ```
 #### 配置
@@ -20,6 +20,8 @@ dependencies {
 <meta-data android:name="uca_weibo_redirect_url" android:value="你的微博RedirectUrl"/>
 <!--qq互连必须 -->
 <meta-data android:name="uca_qq_appid" android:value="tencent你的qq互联appid"/>
+<!--微信必须 -->
+<meta-data android:name="uca_wx_appid" android:value="你的微信appid"/>
 ```
 
 
@@ -31,7 +33,7 @@ dependencies {
 |--------|--------|
 |   微博  | 支持   |
 |   QQ  | 支持   |
-|   微信  | 即将支持   |
+|   微信  | 只支持分享   |
 
 ## License
 [Apache License](LICENSE)

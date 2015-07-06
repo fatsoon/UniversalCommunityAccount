@@ -1,7 +1,10 @@
 package com.fatsoon.uca.utils;
 
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.tencent.mm.sdk.modelmsg.SendMessageToWX;
@@ -15,7 +18,7 @@ import com.tencent.mm.sdk.openapi.WXAPIFactory;
  */
 public class UCAWeixinUtils {
 
-    public static final String WeiXin_APPID = "wx350b68e473927c3a";
+    public static String WeiXin_APPID = "";
     public static final int SUPPORT_FRIENDS_VERSION = 0x21020001;
     private static IWXAPI api;
     private static boolean hasRegistered = false;
@@ -27,7 +30,25 @@ public class UCAWeixinUtils {
         return api;
     }
 
+    private static void readAppInfo(Context context) {
+        try {
+            ApplicationInfo appInfo = context.getPackageManager()
+                    .getApplicationInfo(context.getPackageName(),
+                            PackageManager.GET_META_DATA);
+            String qqAppId = appInfo.metaData.getString("uca_wx_appid");
+            if(qqAppId == null){
+                throw new RuntimeException("Manifest文件中找不到key为uca_wx_appid的metadata");
+            }
+            WeiXin_APPID = qqAppId.substring(7);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     private static void regToWx(Context context) {
+        if(TextUtils.isEmpty(WeiXin_APPID)){
+            readAppInfo(context);
+        }
         api = WXAPIFactory.createWXAPI(context, WeiXin_APPID, true);
         hasRegistered = api.registerApp(WeiXin_APPID);
     }
