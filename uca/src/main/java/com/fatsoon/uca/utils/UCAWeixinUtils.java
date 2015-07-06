@@ -35,11 +35,11 @@ public class UCAWeixinUtils {
             ApplicationInfo appInfo = context.getPackageManager()
                     .getApplicationInfo(context.getPackageName(),
                             PackageManager.GET_META_DATA);
-            String qqAppId = appInfo.metaData.getString("uca_wx_appid");
-            if(qqAppId == null){
+            String value = appInfo.metaData.getString("uca_wx_appid");
+            if(value == null){
                 throw new RuntimeException("Manifest文件中找不到key为uca_wx_appid的metadata");
             }
-            WeiXin_APPID = qqAppId.substring(7);
+            WeiXin_APPID = value;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
