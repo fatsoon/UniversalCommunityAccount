@@ -8,7 +8,7 @@ UCA是Android上的一个第三方账号登录库，目的是简化第三方SDK�
 
 ```gradle
 dependencies {
-    compile 'com.fatsoon:uca:0.1.8'
+    compile 'com.fatsoon:uca:0.1.9'
 }
 ```
 #### 配置
