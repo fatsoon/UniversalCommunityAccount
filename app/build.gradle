@@ -8,7 +8,7 @@ android {
     defaultConfig {
         applicationId "com.fatsoon.universalcommunityaccount"
         minSdkVersion 9
-        targetSdkVersion 21
+        targetSdkVersion 22
         versionCode 1
         versionName "1.0"
     }
@@ -25,5 +25,6 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:22.2.0'
-    compile 'com.fatsoon:uca:0.1.5'
+    //    compile 'com.fatsoon:uca:0.1.5'
+    compile project(':uca')
 }
